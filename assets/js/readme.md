@@ -1,0 +1,1 @@
+ahora estan conectados los html, pero, no se envia los datos de un archivo a otro, la causa del problema es el id, al ser dinamico, siempre esta cambiando y esto hace que no pueda encontrarce el elemento.
