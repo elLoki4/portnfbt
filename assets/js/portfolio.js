@@ -51,12 +51,12 @@ function renderPortfolio() {
     }
     
     projectos.forEach(items => {
-        if (!projectos.id) {
-            projectos.id = generarId();
+        if (!items.id) {
+            items.id = generarId();
         }
         const template = `
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app" data-id="${items.id}">
-                <img src="${items.img}" class="img-fluid" alt="${items.titulo}" />
+                <img src="${items.img}" class="img-fluid" alt="${items.titulo}" data-id="${items.id}" />
                 <div class="portfolio-info">
                     <h4>${items.titulo}</h4>
                     <p>${items.minDescripcion}</p>
@@ -73,11 +73,14 @@ function renderPortfolio() {
     });
 
     portfolio.addEventListener('click', event => {
-        const target = event.target.closest('.portfolio-item, .details-link');
+        const target = event.target.closest('img[data-id], .details-link');
         if (target) {
             const id = target.getAttribute('data-id');
-            localStorage.setItem('selectedProjectId', id);
-            window.location.href = 'portfolio-details.html';
+            const project = projectos.find(p => p.id === id);
+            if (project) {
+                localStorage.setItem('selectedProject', JSON.stringify(project));
+                window.location.href = 'portfolio-details.html';
+            }
         }
     });
 }
