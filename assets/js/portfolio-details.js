@@ -3,15 +3,8 @@ import { projectos } from './portfolio.js';
 function portfolioDetalles() {
     const dataProject = localStorage.getItem('selectedProject');
     const listData = JSON.parse(dataProject)
-    /*
-    const project = projectos.find(item => item.id === id);
-    if (project) {
-        */const detailsContainer = document.getElementById('portfolio-details');
-        /*if (!detailsContainer) {
-            console.error(`Element with id 'PortfolioDetails' not found. ` );
-            return;
-        }*/
-
+        const detailsContainer = document.getElementById('portfolio-details');
+        
         const detailsTemplate = `
             <div class="container" data-aos="fade-up">
                 <div class="portfolio-details-slider swiper init-swiper">
@@ -57,7 +50,7 @@ function portfolioDetalles() {
                             <h3>Project information</h3>
                             <ul>
                                 <li><strong>Category</strong>: ${listData.categoria}</li>
-                                <li><strong>Project URL</strong>: <a href="${listData.url}">${dataProject.url}</a></li>
+                                <li><strong>Project URL</strong>: <a href="${listData.url}">${listData.url}</a></li>
                             </ul>
                         </div>
                     </div>
