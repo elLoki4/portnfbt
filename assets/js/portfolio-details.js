@@ -50,7 +50,7 @@ function portfolioDetalles() {
                             <h3>Project information</h3>
                             <ul>
                                 <li><strong>Category</strong>: ${listData.categoria}</li>
-                                <li><strong>Project URL</strong>: <a href="${listData.url}">${listData.url}</a></li>
+                                <li><strong>Project URL</strong>: <a href="${listData.url}">project</a></li>
                             </ul>
                         </div>
                     </div>
