@@ -1,0 +1,37 @@
+# Habilitar la reescritura de URL
+RewriteEngine On
+
+# Redirigir de HTTP a HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Configuración de redirección para eliminar "www"
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+# Establecer un tipo de contenido específico para archivos
+AddType application/x-javascript .js
+AddType text/css .css
+
+# Controlar el almacenamiento en caché
+<FilesMatch "\.(jpg|jpeg|png|gif|js|css)$">
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+</FilesMatch>
+
+# Proteger el acceso al archivo .htaccess
+<Files ".htaccess">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Evitar el acceso a directorios
+Options -Indexes
+
+# Configuración de seguridad básica
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ /index.php?/$1 [L]
+</IfModule>
